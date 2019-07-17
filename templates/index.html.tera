@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>НАП Гейт</title>
+        <link rel="stylesheet" href="/assets/styles.css" type="text/css" media="all">
+        <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+    </head>
+    <body>
+        <a href="https://github.com/martinsotirov/napgate-search" class="github" target="__blank">
+            <img src="/assets/github-corner-right.svg" alt="Github Logo">
+        </a>
+
+        <div class="container">
+            <h1>НАП Гейт</h1>
+            <p><a href="https://www.capital.bg/politika_i_ikonomika/bulgaria/2019/07/15/3938624_ot_nap_sa_iztekli_lichni_danni_na_milioni_bulgarski/" target="__blank">На 15.07.2019 бяха публикувани</a> хакнати бази данни на НАП. Тук можете да проверите, дали Вашите данни са засегнати.</p>
+            <form action="/" method="POST" class="search-form">
+                <label for="egn">
+                    <span>ЕГН</span>
+                    <input type="text" name="egn" id="egn" value="{{ egn }}">
+                </label>
+                <label for="email">
+                    <span>Имейл</span>
+                    <input type="text" name="email" id="email" value="{{ email }}">
+                </label>
+                <input type="submit" value="Провери">
+            </form>
+
+            {% if egn != "" or email != "" %}
+            <div class="results">
+                {% if egn != "" %}
+                    {% if egn_found %}
+                        <h3 class="danger"><img class="icon" src="/assets/stop.svg">За съжалние Вашето ЕГН "{{ egn }}" беше намерено.</h3>
+                    {% else %}
+                        <h3 class="success"><img class="icon" src="/assets/check.svg">Честито, Вашето ЕГН "{{ egn }}" не беше намерено.</h3>
+                    {% endif %}
+                {% endif %}
+
+                {% if email != "" %}
+                    {% if email_found %}
+                        <h3 class="danger"><img class="icon" src="/assets/stop.svg">За съжалние Вашият имейл "{{ email }}" беше намерен.</h3>
+                    {% else %}
+                        <h3 class="success"><img class="icon" src="/assets/check.svg">Честито, Вашият имейл "{{ email }}" не беше намерен.</h3>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </body>
+</html>

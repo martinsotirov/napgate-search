@@ -1,0 +1,12 @@
+[package]
+name = "napgate-api"
+version = "0.1.0"
+authors = ["Martin Sotirov <contact@martinsotirov.com>"]
+edition = "2018"
+
+[dependencies]
+rocket = "0.4.2"
+
+[dependencies.rocket_contrib]
+version = "0.4.2"
+features = ["tera_templates", "serve"]
